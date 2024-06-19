@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mettre à jour une Ville</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <head th:replace="~{common.html :: #header}">
+    </head>
+<body>
+<div th:replace="common.html :: #menu"></div>
+<div class="container mt-5">
+    <h1 class="mb-4">Mettre à jour une Ville</h1>
+    <form action="#" th:action="@{/city/update}" th:object="${city}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="mb-3">
+            <label for="name" class="form-label">Nom de la Ville</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ city.name }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

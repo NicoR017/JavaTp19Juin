@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ajouter un Vol</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <head th:replace="~{common.html :: #header}">
+    </head>
+<body>
+<div th:replace="common.html :: #menu"></div>
+<div class="container mt-5">
+    <h1 class="mb-4">Ajouter un Vol</h1>
+    <form action="#" th:action="@{/flight/add}" th:object="${flight}" method="post">
+        <div class="mb-3">
+            <label for="airplane" class="form-label">Avion</label>
+            <select id="airplane" class="form-select" th:field="*{airplane}"><!--name="airplane"-->
+                <option th:each="airplane : ${airplanes}"
+                        th:value="${airplane.id}"
+                        th:text="${airplane.name}">
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="departureCity" class="form-label">Ville de départ</label>
+            <select id="departureCity" name="departureCity" class="form-select" th:field="*{departureCity}">
+                <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="arrivalCity" class="form-label">Ville d'arrivée</label>
+            <select id="arrivalCity" name="arrivalCity" class="form-select" th:field="*{arrival_city}">
+                <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="departureTime" class="form-label">Heure de départ</label>
+            <input type="datetime-local" id="departureTime" name="departureTime" class="form-control" th:field="*{departureTime}">
+        </div>
+        <div class="mb-3">
+            <label for="arrivalTime" class="form-label">Heure d'arrivée</label>
+            <input type="datetime-local" id="arrivalTime" name="arrivalTime" class="form-control" th:field="*{arrivalTime}">
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

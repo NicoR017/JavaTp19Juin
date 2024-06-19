@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Liste des vols</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <head th:replace="~{/common.html :: #header}">
+    </head>
+<body>
+<div th:replace="common.html :: #menu"></div>
+<div class="container mt-5">
+    <h1 class="mb-4">Liste des vols</h1>
+    <a href="/flight/add" class="btn btn-primary mb-3">Ajouter un vol</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Avion</th>
+            <th>Ville de depart</th>
+            <th>Ville d'arrivé</th>
+            <th>Heure de depart</th>
+            <th>Heure d'arrivé</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="flight : ${flights}">
+            <td style="width: 10%" th:text="${flight.id}"></td>
+            <td th:text="${flight.airplane.name}"></td>
+            <td th:text="${flight.departureCity.name}"></td>
+            <td th:text="${flight.arrival_city.name}"></td>
+            <td th:text="${flight.departureTime}"></td>
+            <td th:text="${flight.arrivalTime}"></td>
+            <td>
+                <a th:href="@{/flight/update/{id}(id=${flight.id})}"><button class="btn btn-info">Modifier</button></a>
+                <a th:href="@{/flight/delete/{id}(id=${flight.id})}"><button class="btn btn-danger">Supprimer</button></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
